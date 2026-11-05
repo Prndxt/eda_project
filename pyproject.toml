@@ -3,6 +3,7 @@ name = "ds-eda-project-template"
 version = "0.1.0"
 requires-python = ">=3.13.17"
 dependencies = [
+    "folium>=0.20.0",
     "missingno>=0.5.2",
     "plotly>=6.8.0",
     "psycopg2-binary>=2.9.12",
