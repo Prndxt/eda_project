@@ -1,148 +1,13 @@
-# King County Housing EDA Project Template
 
-This is the starter template for the Exploratory Data Analysis (EDA) project. You will work with the King County housing dataset (home sales in and around Seattle, USA), uncover what drives house prices, and turn your findings into insights and recommendations for a client you choose.
-
-## Learning Objectives
-
-By the end of this repository, you should be able to:
-
-- Connect to a PostgreSQL database from Python and load query results into a pandas DataFrame.
-- Frame an exploratory data analysis around clear research questions and hypotheses.
-- Clean and wrangle a real-world dataset by handling missing values, outliers, and feature transformations.
-- Explore distributions and the relationships between features and the target variable (price).
-- Translate your analysis into at least three insights and three client-specific recommendations.
-- Present your work to a non-technical audience.
-
-## Learning Path
-
-Work through the files in order. Start with the assignment to understand the goal, follow the workflow as your guide, fetch the data, then run your analysis in the EDA notebook.
-
-> [!TIP]
-> The data lives in the **eda** schema of the database and is split across two tables. Before fetching anything in code, connect with DBeaver and explore that schema: inspect both tables, check [**Column Names**](column_names.md) for what each field means, and work out how to join them. Once you have a working `JOIN`, use it as the query in [**03 - Fetching the Data**](03_fetching_the_data_eda.ipynb) to load the combined dataset into pandas.
-
-| File / Folder                                                   | Description                                                                                                              |
-| --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| [**01 - Assignment**](01_assignment.md)                      | The project brief: the dataset, your tasks, deliverables, and the list of clients to choose from.                        |
-| [**02 - Workflow**](02_workflow.md)                          | A recommended EDA workflow, from understanding and questioning the data through cleaning, relationships, and presenting. |
-| [**03 - Fetching the Data**](03_fetching_the_data_eda.ipynb) | Connect to the PostgreSQL database with psycopg2 and SQLAlchemy, then pull the data into a pandas DataFrame.             |
-| [**04 - EDA**](04_eda.ipynb)                                 | Starter notebook for your exploratory data analysis.                                                                     |
-| [**Column Names**](column_names.md)                          | Data dictionary describing each column in the King County housing dataset.                                               |
-
-### Additional Folders and Files
-
-| File / Folder                           | Description                                                                                    |
-| --------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| [**Data**](data/)                    | Where you save the dataset CSV. The folder is tracked, but its data files are kept out of git. |
-| [**.env.example**](.env.example)     | Template for the database credentials. Copy it to `.env` and fill in your values.            |
-| [**pyproject.toml**](pyproject.toml) | Project configuration and dependencies.                                                        |
-| [**uv.lock**](uv.lock)               | Dependency lock file.                                                                          |
-
-## Setup
-
-Use [uv](https://docs.astral.sh/uv/getting-started/installation/) 0.13.5 or newer
-and Python 3.13.17 or a newer 3.13 patch release, as defined in
-[`.python-version`](.python-version).
-
-> [!NOTE]
-> Throughout these steps, text in angle brackets like `<repo-name>` is a **placeholder**. Replace it, including the `< >` brackets, with your own value. For example, `cd <repo-name>` becomes `cd ds-eda-project-template`.
-
-### 1. Create the Repository from the Template
-
-Click **Use this template** on GitHub.
-
-When creating the repository:
-
-- Set yourself as the **Owner**
-- Choose a repository name
-- Disable **Include all branches**
-- Click **Create repository**
-
-> [!IMPORTANT]
-> If you are working in pairs or groups, only **one person** should complete this step.
----
-
-### 2. Add Collaborators (Pairs/Groups Only)
-
-If working with teammates:
-
-1. Open the repository on GitHub
-2. Go to **Settings → Collaborators**
-3. Add your teammates as collaborators
-4. Share the repository link with your team
-
-Teammates should accept the invitation before continuing.
-
----
-
-### 3. Clone the Repository
-
-Copy the SSH URL from the **Code** button on GitHub, then run:
-
-```bash
-git clone <copied-ssh-url>
-```
-
-The copied SSH URL will look like `git@github.com:<your-username>/<repo-name>.git`.
-
----
-
-### 4. Move into the Project Folder and Install Dependencies
-
-This installs all dependencies and creates a virtual environment in `.venv/`.
-
-```bash
-cd <repo-name>
-uv sync
-```
-
-> [!TIP]
-> Need a library that is not installed yet (for example a mapping)? Add it with `uv add <package-name>`. This updates `pyproject.toml` and `uv.lock` and installs it into your `.venv`. Commit both files; teammates then run uv sync after pulling to get the same environment.
-
----
-
-### 5. Set up your Database Credentials
-
-The data-fetching notebook reads the database connection details from a `.env` file. Copy the template and fill in your own values:
-
-```bash
-cp .env.example .env
-```
-
-Open `.env` and replace the placeholders with the credentials for the King County housing database (the same ones you use in DBeaver). These values feed [**03 - Fetching the Data**](03_fetching_the_data_eda.ipynb).
-
-> [!CAUTION]
-> `.env` holds secrets and must never be committed. It is already listed in `.gitignore`. Only `.env.example`, with placeholder values, belongs in the repository.
-
----
-
-### 6. Open the Notebooks
-
-> [!NOTE]
-> Make sure you open VS Code from the project root so it automatically detects the environment created by uv sync.
-
-Launch VS Code in the project root folder:
-
-```bash
-code .
-```
-
-Then open a notebook and select the Python environment created by `uv sync` as the kernel.
-
-## References & Further Reading
-
-- [**House Sales in King County dataset**](https://www.kaggle.com/datasets/harlfoxem/housesalesprediction): The source dataset, with column descriptions and community notebooks.
-- [**Pandas user guide**](https://pandas.pydata.org/docs/user_guide/index.html): The official guide to data manipulation with pandas.
-- [**Seaborn tutorial**](https://seaborn.pydata.org/tutorial.html): Statistical data visualization in Python.
-- [**SQLAlchemy documentation**](https://docs.sqlalchemy.org/en/20/): The database toolkit used to query PostgreSQL from Python.
-- [**Hypothesis generation for EDA**](https://www.analyticsvidhya.com/blog/2020/11/an-efficient-way-of-performing-eda-hypothesis-generation/): How to form research questions and hypotheses before diving into the data.
-- [**EDA Checklist**](https://github.com/neuefische/datascience-infographics/blob/main/EDA_Checklist.md): A phase-by-phase checklist for working through an exploratory analysis.
-- [**Detailed EDA with Python**](https://www.kaggle.com/code/ekami66/detailed-exploratory-data-analysis-with-python): A worked example of a thorough EDA notebook on real data.
-- [**Tips for data science presentations**](https://www.dataknowsall.com/storytelling.html): Storytelling techniques for presenting results to a non-technical audience.
-
-*****
 # King County Housing — Exploratory Data Analysis (EDA)
 
 An exploratory data analysis of the King County housing dataset (Seattle and surrounding areas, May 2014 – May 2015), tailored to provide data-driven buying strategies and real estate recommendations for our target client persona.
+
+## Dataset at a Glance
+* **Size:** 21,373 different houses (21,550 sales; 177 houses were sold twice, and only the latest sale is kept when counting houses).
+* **Price distribution:** 93% of the houses sold for under $1M, and almost half sold for $250k–$500k.
+* **Low-budget floor:** only 19 houses (0.1%) sold below $100k, so for low-budget clients we recommend planning at least $100k.
+* **Use of the data:** our company's past sales, used to understand the market, not as listings Thomas can buy.
 
 ---
 
@@ -154,18 +19,18 @@ An exploratory data analysis of the King County housing dataset (Seattle and sur
 ---
 
 ## Client Persona: Thomas Hansen
-* **Profile & Goal:** Thomas is looking for a home in King County for a large family of seven (himself, his wife, and five children).
-* **Budget Constraint:** Strictly limited budget between **$200k – $250k**.
-* **Key Preferences:** Needs sufficient living space (ideally 3+ bedrooms), prioritizes a dense and social neighborhood for his kids, and is open to older or lower-grade properties requiring cosmetic updates.
-
+* **Profile & Goal:** Thomas is looking for a home in King County for a family of seven (himself, his wife, and five children).
+* **Budget Constraint:** Very limited budget of up to **$250k**. We analysed the $100k–$250k range; the most options are between **$200k and $250k**.
+* **Key Preferences:** Needs sufficient living space (at least three bedrooms, ideally 3–4), wants the best space per dollar, prioritizes a dense and social neighborhood for his kids, and is open to older or lower-grade properties requiring cosmetic updates.
 ---
 
 ## Hypotheses & Key Findings
 
 ### H1: Bedroom Count & Price Reality (5–6 vs. 3–4 Bedrooms)
-* **Hypothesis:** A large family home with 5–6 bedrooms is within reach under a $250k budget.
-* **Finding:** **Rejected.** County-wide median prices for 5–6 bedroom properties average **$637k** (32% higher than 3–4 bedroom homes at **$482k**). In the sub-$250k market segment, only ~50 homes have 5+ bedrooms.
-* **Takeaway:** Thomas must adjust his target to **3–4 bedroom properties**, where market inventory is significantly higher (~1,500 options under $250k).
+* **Hypothesis:** Moving from 3–4 to 5–6 bedrooms raises the median price by about 25%, so a seven-person home on a low budget is hard to find.
+* **Finding:** **Confirmed.** County-wide, 5–6 bedroom homes have a median price of **$637k**, which is **32% higher** than 3–4 bedroom homes (**$482k**). Large homes are also rare: 1,831 houses (8.6%) have 5–6 bedrooms, against 16,558 (77.5%) with 3–4.
+* **Within the budget:** Between $100k and $250k only about 50 homes have 5–6 bedrooms (11 of them under $200k). In the same range there are **1,656** homes with 3–4 bedrooms: 58 at $100k–150k, 369 at $150k–200k and 1,229 at $200k–250k.
+* **Takeaway:** Thomas should target **3–4 bedroom properties** with a budget of **$200k–$250k**, where he has almost three times as many options as under $200k (1,229 against 427).
 
 ### H2: Location, Social Neighborhood & Quality Trade-Offs
 * **Hypothesis:** Certain zip codes offer an optimal balance of affordable 3+ bedroom listings, high community density (Social Score), and acceptable build quality.
@@ -197,6 +62,7 @@ An exploratory data analysis of the King County housing dataset (Seattle and sur
 * **Single-Year Horizon:** Dataset covers sales only from May 2014 to May 2015; true multi-year seasonality cannot be completely decoupled from annual macro trends.
 * **Inventory Constraints:** While winter provides favorable pricing, overall market listings decline during colder months, limiting total simultaneous choices.
 * **Proxy Metrics:** "Social neighborhood" is estimated using neighborhood lot sizes (`sqft_lot15`) due to the absence of public transit, school district, and crime rate features in the dataset.
+
 
 ---
 
