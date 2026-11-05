@@ -138,3 +138,75 @@ Then open a notebook and select the Python environment created by `uv sync` as t
 - [**EDA Checklist**](https://github.com/neuefische/datascience-infographics/blob/main/EDA_Checklist.md): A phase-by-phase checklist for working through an exploratory analysis.
 - [**Detailed EDA with Python**](https://www.kaggle.com/code/ekami66/detailed-exploratory-data-analysis-with-python): A worked example of a thorough EDA notebook on real data.
 - [**Tips for data science presentations**](https://www.dataknowsall.com/storytelling.html): Storytelling techniques for presenting results to a non-technical audience.
+
+*****
+# King County Housing — Exploratory Data Analysis (EDA)
+
+An exploratory data analysis of the King County housing dataset (Seattle and surrounding areas, May 2014 – May 2015), tailored to provide data-driven buying strategies and real estate recommendations for our target client persona.
+
+---
+
+## Team Members
+* **Parand Khajehpour**
+* **Rabih**
+* **Gülşah Bayhan Ara**
+
+---
+
+## Client Persona: Thomas Hansen
+* **Profile & Goal:** Thomas is looking for a home in King County for a large family of seven (himself, his wife, and five children).
+* **Budget Constraint:** Strictly limited budget between **$200k – $250k**.
+* **Key Preferences:** Needs sufficient living space (ideally 3+ bedrooms), prioritizes a dense and social neighborhood for his kids, and is open to older or lower-grade properties requiring cosmetic updates.
+
+---
+
+## Hypotheses & Key Findings
+
+### H1: Bedroom Count & Price Reality (5–6 vs. 3–4 Bedrooms)
+* **Hypothesis:** A large family home with 5–6 bedrooms is within reach under a $250k budget.
+* **Finding:** **Rejected.** County-wide median prices for 5–6 bedroom properties average **$637k** (32% higher than 3–4 bedroom homes at **$482k**). In the sub-$250k market segment, only ~50 homes have 5+ bedrooms.
+* **Takeaway:** Thomas must adjust his target to **3–4 bedroom properties**, where market inventory is significantly higher (~1,500 options under $250k).
+
+### H2: Location, Social Neighborhood & Quality Trade-Offs
+* **Hypothesis:** Certain zip codes offer an optimal balance of affordable 3+ bedroom listings, high community density (Social Score), and acceptable build quality.
+* **Finding:** **Confirmed.** When filtering for 3+ bedroom homes priced between $200k and $250k, listings cluster heavily in specific suburban areas. Social scores and building conditions show no drastic deviations across the top hubs.
+* **Recommended Zip Codes:**
+  1. **98023:** 132 listings | Median Price: $230k | Social Score: 62.5 | Condition: 3.49 / Grade: 7.10
+  2. **98042:** 105 listings | Median Price: $225k | Social Score: 64.3 | Condition: 3.81 / Grade: 6.81
+  3. **98001:** 96 listings | Median Price: $224k | Social Score: 59.9 | Condition: 3.50 / Grade: 6.96
+
+### H3: Timing & Seasonality Analysis
+* **Hypothesis:** Buying in the winter months (Dec–Feb) offers a 5–8% price discount compared to the peak summer season (May–Jul).
+* **Finding:** **Confirmed.** The peak season median price is **$465,000**, dropping to **$430,000** during winter, with an annual low of **$426,000** in February.
+* **Result:** A statistically verified **7.5% price reduction**, translating to approximately **$15,000 – $18,000 in direct capital savings** for Thomas's budget tier.
+* **Visual Integrity:** Visualized using an honest zero-based Y-axis to prevent artificial slope exaggeration and preserve objective data reporting.
+
+---
+
+## Actionable Recommendations for Thomas Hansen
+
+1. **Target 3–4 Bedrooms:** Focus searches on 3–4 bedroom configurations to maximize available inventory while remaining within budget.
+2. **Focus on Top 3 Zip Codes:** Prioritize properties in **98023**, **98042**, and **98001** for the highest supply and favorable lot-density metrics.
+3. **Time the Purchase in Winter:** Enter negotiations and submit offers between **December and February** to capture the ~7.5% seasonal discount.
+4. **Accept Necessary Trade-Offs:** Target homes built between 1960–1980 with construction grades 6–7; allocate seasonal savings toward essential cosmetic repairs and moving costs.
+
+---
+
+## Data Limitations
+
+* **Single-Year Horizon:** Dataset covers sales only from May 2014 to May 2015; true multi-year seasonality cannot be completely decoupled from annual macro trends.
+* **Inventory Constraints:** While winter provides favorable pricing, overall market listings decline during colder months, limiting total simultaneous choices.
+* **Proxy Metrics:** "Social neighborhood" is estimated using neighborhood lot sizes (`sqft_lot15`) due to the absence of public transit, school district, and crime rate features in the dataset.
+
+---
+
+## Repository Structure
+
+```text
+├── 04_eda.ipynb                     # Master notebook combining data prep, H1, H2, and H3
+├── 08_H1.ipynb                      # Hypothesis 1: Bedroom distributions and pricing
+├── 08_H2.ipynb                      # Hypothesis 2: Geographic filtering, zip code selection, and social scores
+├── 08_H3.ipynb                      # Hypothesis 3: Seasonality, timing analysis, and zero-based visual
+├── cleandataset.csv                 # Cleaned King County dataset
+├── pyproject.toml / uv.lock         # Project dependencies managed via uv
+└── README.md                        # Project documentation and summary
