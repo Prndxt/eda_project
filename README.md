@@ -13,7 +13,7 @@ An exploratory data analysis of the King County housing dataset (Seattle and sur
 
 ## Team Members
 * **Parand Khajehpour**
-* **Rabih**
+* **Rabih buss**
 * **Gülşah Bayhan Ara**
 
 ---
